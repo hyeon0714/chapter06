@@ -1,4 +1,4 @@
-package echo;
+package echoo;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,7 +9,6 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class Client {
 	
@@ -31,11 +30,25 @@ public class Client {
 		InputStreamReader ir=new InputStreamReader(b, "UTF-8");
 		BufferedReader br=new BufferedReader(ir);
 		
-		Scanner sc=new Scanner(System.in);
+		//Scanner sc=new Scanner(System.in);
+		
+		InputStream sc=System.in;//system.in의 중요성(입력받은 값)
+		InputStreamReader scisr=new InputStreamReader(sc);
+		BufferedReader scbr=new BufferedReader(scisr);
+		//스캐너 문법 없이 입력받는법
+		
+		/*
+		OutputStream out=System.out;
+		OutputStreamWriter osw=new OutputStreamWriter(out, "UTF-8");
+		BufferedWriter outbw=new BufferedWriter(osw);
+		*/
+		//println없이 출력하는법
+		
 		// 반복문 추가
 		while(true) {
 			
-			String str=sc.nextLine();
+			//String str=sc.nextLine();
+			String str=scbr.readLine();
 			
 			if(str.equals("/q")) {
 				break;
@@ -52,9 +65,10 @@ public class Client {
 			
 			}
 		System.out.println("=============");
+		
 		sc.close();
 		bw.close();
 		br.close();
-		a.close();// java echo.Client 실행명령문
+		a.close();// java echoo.Client 실행명령문
 	}
 }
